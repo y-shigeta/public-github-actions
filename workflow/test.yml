@@ -1,0 +1,19 @@
+name: test
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "!*.md"
+
+
+jobs:
+  test:
+    name: check-ut
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+      
+      - name: failure
+        run: exit 1
