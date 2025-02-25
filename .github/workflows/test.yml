@@ -1,7 +1,7 @@
 name: test
 on:
   schedule:
-    - cron:  '3 * * * 1-5'
+    - cron:  '2 * * * 1-5'
   pull_request:
     branches:
       - main
