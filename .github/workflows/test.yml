@@ -30,7 +30,7 @@ jobs:
         run: exit 1
       
   merge-check:
-    name: merge-check
+    name: mergecheck
     needs: [test1, test2]
 #    if: success() 
     runs-on: ubuntu-latest
@@ -38,6 +38,6 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
       
-      - name: merge-check
+      - name: echo
         run: echo "merge can be done"
       
