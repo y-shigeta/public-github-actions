@@ -35,8 +35,8 @@ jobs:
 #    if: success() 
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v4
+#      - name: checkout repo
+#        uses: actions/checkout@v4
       
       - name: echo
         run: echo "merge can be done"
