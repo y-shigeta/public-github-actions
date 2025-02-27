@@ -2,12 +2,13 @@ name: test
 on:
 #  schedule:
 #    - cron:  '35 12 * * *'
-  pull_request:
+  push:
+#  pull_request:
     branches:
       - main
-    paths:
-      - "src/**"
-      - "!*.md"
+#    paths:
+#      - "src/**"
+#      - "!*.md"
 
 
 jobs:
