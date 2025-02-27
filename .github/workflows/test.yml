@@ -26,8 +26,8 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
       
-      - name: failure
-        run: exit 1
+#      - name: failure
+#        run: exit 1
       
   merge-check:
     name: merge-check
