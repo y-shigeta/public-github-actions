@@ -25,7 +25,7 @@ jobs:
     outputs:
       stage: ${{ steps.setenv.outputs.stage}}
     env: 
-      test1: ${{ fromJSON( '["A", "B", "C"]') }}
+      test1: ${{ fromJSON( '["A", "B", "C"]')[1] }}
 #      test2: ${{ fromJSON( '[ { "C" : "A" }]') }}
     steps:
       - name: set env
