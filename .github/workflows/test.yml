@@ -33,8 +33,8 @@ jobs:
             echo "stage=$obj" >> $GITHUB_OUTPUT 
           else 
             obj = `jq -c -n '{include: [{ env: "dev" },{ env: "stg" }]}'`
-            echo "stage=$obj" >> $GITHUB_OUTPUT fi
-          echo ${GITHUB_OUTPUT}
+            echo "stage=$obj" >> $GITHUB_OUTPUT 
+          fi
            
   env-check:
     needs: set-env
