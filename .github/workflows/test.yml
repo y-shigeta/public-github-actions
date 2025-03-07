@@ -9,16 +9,51 @@ on:
 #    paths:
 #      - "src/**"
 #      - "!*.md"
-
+  workflow_dispatch:
+    inputs:
+      target_env:
+        type: choice
+        required: true
+        options:
+          - "dev"
+          - "stg"
 
 jobs:
+  set-env:
+    name: set-env
+    runs-on: ubuntu-latest
+    outputs:
+      stage: ${{ steps.set-env.outputs.stage}}
+    steps:
+      - name: set env
+        run: |
+          if [ -n "${{ github.event.inputs.target_env }}"]; then
+            echo "stage=${{ github.event.inputs.target_env }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "stage=[dev, stg]" >> "$GITHUB_OUTPUT"
+          fi
+
+  env-check:
+    needs: set-env
+    strategy:
+      matrix:
+        stage: ${{ needs.set-env.outputs.stage }}
+    env: 
+      env_name: ${{ matrix.stage}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: |
+          echo "env.env_name ${{ env.env_name }}"
+          echo "stage ${{ needs.set-env.outputs.stage }}"
+
   test1:
     name: check-ut
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
-      
+
   test2:
     name: check-it
     runs-on: ubuntu-latest
