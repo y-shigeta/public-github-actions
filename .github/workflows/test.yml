@@ -30,6 +30,7 @@ jobs:
     steps:
       - name: set env
         id: setenv
+        if: ${{ github.event.inputs.target_env }} )
         run: | 
           #if [ -n "${{ github.event.inputs.target_env }}" ]; then 
           #  obj = `jq -c -n '{include: [{ env: "${{ github.event.inputs.target_env }}" }]}'`
@@ -39,8 +40,9 @@ jobs:
             #obj=$(jq -c -n '["A", "B", "C"]')
             echo ${{ env.test1 }}
             #obj=$(echo '{ "env" : "dev" }' | jq -c)
-            #echo "stage=${obj}"              
-            echo "stage=[ "dev", "stg" ]" >> $GITHUB_OUTPUT 
+            #echo "stage=${obj}"
+            obj="{¥"targets¥":[{¥"env¥" : ¥"dev¥"} ]}"
+            echo "stage=$obj" >> $GITHUB_OUTPUT 
 #            echo "${{ toJson($GITHUB_OUTPUT) }}"
           #fi
            
@@ -50,7 +52,7 @@ jobs:
       matrix:
         stage: ${{ fromJson(needs.set-env.outputs.stage) }}
     env: 
-      env_name: ${{ matrix.stage }}
+      env_name: ${{ matrix.stage.env }}
 #      env_name: ${{ fromJson(needs.set-env.outputs.stage) }}
     runs-on: ubuntu-latest
     steps:
