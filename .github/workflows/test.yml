@@ -34,7 +34,7 @@ jobs:
           #  echo "stage=${obj}" >> $GITHUB_OUTPUT 
           #else 
             #obj=$(jq -c -n '{include: [{ env: "dev" },{ env: "stg" }]}')
-            obj=$(echo '{ env: "dev" }' | jq -c)
+            obj=$(echo '{ "env" : "dev" }' | jq -c)
             echo "stage=${obj}"              
             echo "stage=${obj}" >> $GITHUB_OUTPUT 
 #            echo "${{ toJson($GITHUB_OUTPUT) }}"
