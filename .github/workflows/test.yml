@@ -45,7 +45,7 @@ jobs:
 #        stage: ${{ fromJson(needs.set-env.outputs.stage) }}
     env: 
 #      env_name: ${{ matrix.stage.env}}
-      env_name: ${{ needs.set-env.outputs.stage }}
+      env_name: ${{ fromJson(needs.set-env.outputs.stage) }}
     runs-on: ubuntu-latest
     steps:
       - name: echo
