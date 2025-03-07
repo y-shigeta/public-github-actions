@@ -33,24 +33,26 @@ jobs:
           #  echo "stage=${obj}"  
           #  echo "stage=${obj}" >> $GITHUB_OUTPUT 
           #else 
-            obj=$(jq -c -n '{include: [{ env: "dev" },{ env: "stg" }]}')
+            obj=$(jq -c '{include: [{ env: "dev" },{ env: "stg" }]}')
             echo "stage=${obj}"  
             echo "stage=${obj}" >> $GITHUB_OUTPUT 
           #fi
            
   env-check:
     needs: set-env
-    strategy:
-      matrix:
-        stage: ${{ fromJson(needs.set-env.outputs.stage) }}
-    env: 
-      env_name: ${{ matrix.stage.env}}
+#    strategy:
+#      matrix:
+#        stage: ${{ fromJson(needs.set-env.outputs.stage) }}
+#    env: 
+#      env_name: ${{ matrix.stage.env}}
+#      env_name: ${{ fromJson(needs.set-env.outputs.stage) }}
     runs-on: ubuntu-latest
     steps:
       - name: echo
         run: |
-          echo "env.env_name ${{ env.env_name }}"
-          echo "stage ${{ needs.set-env.outputs.stage }}"
+          echo "env.env_name ${{ fromJson(needs.set-env.outputs.stage) }}"
+#          echo "env.env_name ${{ env.env_name }}"
+#          echo "stage ${{ needs.set-env.outputs.stage }}"
 
 #  test1:
 #    name: check-ut
