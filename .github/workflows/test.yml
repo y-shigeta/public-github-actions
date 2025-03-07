@@ -50,7 +50,7 @@ jobs:
     steps:
       - name: echo
         run: |
-          echo "env.env_name ${{ fromJson(needs.set-env.outputs.stage) }}"
+          echo "env.env_name ${{ needs.set-env.outputs.stage }}"
 #          echo "env.env_name ${{ env.env_name }}"
 #          echo "stage ${{ needs.set-env.outputs.stage }}"
 
