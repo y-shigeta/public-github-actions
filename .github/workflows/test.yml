@@ -27,12 +27,9 @@ jobs:
     steps:
       - name: set env
         id: set-env
-        run: |
-          if [ -n "${{ github.event.inputs.target_env }}" ]; then
-            echo "stage=${{ github.event.inputs.target_env }}" >> $GITHUB_OUTPUT
-          else
-            echo "stage=[dev, stg]" >> $GITHUB_OUTPUT
-          fi
+        run: | 
+          if [ -n "${{ github.event.inputs.target_env }}" ]; then echo "stage=${{ github.event.inputs.target_env }}" >> $GITHUB_OUTPUT fi
+          if [ -z "${{ github.event.inputs.target_env }}" ]; then echo "stage=[ dev, stg ]" >> $GITHUB_OUTPUT fi
           echo $GITHUB_OUTPUT
 
   env-check:
