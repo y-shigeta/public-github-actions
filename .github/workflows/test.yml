@@ -23,10 +23,10 @@ jobs:
     name: set-env
     runs-on: ubuntu-latest
     outputs:
-      stage: ${{ steps.set-env.outputs.stage}}
+      stage: ${{ steps.setenv.outputs.stage}}
     steps:
       - name: set env
-        id: set-env
+        id: setenv
         run: | 
           #if [ -n "${{ github.event.inputs.target_env }}" ]; then 
           #  obj = `jq -c -n '{include: [{ env: "${{ github.event.inputs.target_env }}" }]}'`
