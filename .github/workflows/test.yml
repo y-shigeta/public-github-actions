@@ -32,6 +32,7 @@ jobs:
           else
             echo "stage=[dev, stg]" >> "$GITHUB_OUTPUT"
           fi
+          echo "$GITHUB_OUTPUT"
 
   env-check:
     needs: set-env
@@ -47,32 +48,32 @@ jobs:
           echo "env.env_name ${{ env.env_name }}"
           echo "stage ${{ needs.set-env.outputs.stage }}"
 
-  test1:
-    name: check-ut
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v4
-
-  test2:
-    name: check-it
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v4
-      
-#      - name: failure
-#        run: exit 1
-      
-  merge-check:
-    name: mergecheck
-    needs: [test1, test2]
-#    if: success() 
-    runs-on: ubuntu-latest
-    steps:
+#  test1:
+#    name: check-ut
+#    runs-on: ubuntu-latest
+#    steps:
 #      - name: checkout repo
 #        uses: actions/checkout@v4
-      
-      - name: echo
-        run: echo "merge can be done"
+#
+#  test2:
+#    name: check-it
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: checkout repo
+#        uses: actions/checkout@v4
+#      
+##      - name: failure
+##        run: exit 1
+#      
+#  merge-check:
+#    name: mergecheck
+#    needs: [test1, test2]
+##    if: success() 
+#    runs-on: ubuntu-latest
+#    steps:
+##      - name: checkout repo
+##        uses: actions/checkout@v4
+#      
+#      - name: echo
+#        run: echo "merge can be done"
       
