@@ -28,17 +28,21 @@ jobs:
       - name: set env
         id: set-env
         run: | 
-          if [ -n "${{ github.event.inputs.target_env }}" ]; then echo "stage=${{ github.event.inputs.target_env }}" >> $GITHUB_OUTPUT fi
-          if [ -z "${{ github.event.inputs.target_env }}" ]; then echo "stage=[ dev, stg ]" >> $GITHUB_OUTPUT fi
-          echo $GITHUB_OUTPUT
-
+          if [ -n "${{ github.event.inputs.target_env }}" ]; then 
+            obj = `jq -c -n '{include: [{ env: "${{ github.event.inputs.target_env }}" }]}'`
+            echo "stage=$obj" >> $GITHUB_OUTPUT 
+          else 
+            obj = `jq -c -n '{include: [{ env: "dev" },{ env: "stg" }]}'`
+            echo "stage=$obj" >> $GITHUB_OUTPUT fi
+          echo ${GITHUB_OUTPUT}
+           
   env-check:
     needs: set-env
     strategy:
       matrix:
-        stage: ${{ needs.set-env.outputs.stage }}
+        stage: ${{ fromJson(needs.set-env.outputs.stage) }}
     env: 
-      env_name: ${{ matrix.stage}}
+      env_name: ${{ matrix.stage.env}}
     runs-on: ubuntu-latest
     steps:
       - name: echo
