@@ -26,6 +26,7 @@ jobs:
       stage: ${{ steps.set-env.outputs.stage}}
     steps:
       - name: set env
+        id: set-env
         run: |
           if [ -n "${{ github.event.inputs.target_env }}" ]; then
             echo "stage=${{ github.event.inputs.target_env }}" >> $GITHUB_OUTPUT
