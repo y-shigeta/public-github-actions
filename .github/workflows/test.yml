@@ -32,7 +32,7 @@ jobs:
           else
             echo "stage=[dev, stg]" >> "$GITHUB_OUTPUT"
           fi
-          echo "$GITHUB_OUTPUT"
+          echo "${{ GITHUB_OUTPUT }}"
 
   env-check:
     needs: set-env
