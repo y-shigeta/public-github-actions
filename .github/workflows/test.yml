@@ -43,15 +43,15 @@ jobs:
 #    strategy:
 #      matrix:
 #        stage: ${{ fromJson(needs.set-env.outputs.stage) }}
-#    env: 
+    env: 
 #      env_name: ${{ matrix.stage.env}}
-#      env_name: ${{ fromJson(needs.set-env.outputs.stage) }}
+      env_name: ${{ needs.set-env.outputs.stage }}
     runs-on: ubuntu-latest
     steps:
       - name: echo
         run: |
-          echo "env.env_name ${{ needs.set-env.outputs.stage }}"
-#          echo "env.env_name ${{ env.env_name }}"
+          echo "env.env_name ${{ env.env_name }}"
+#          echo "env.env_name ${{ needs.set-env.outputs.stage }}"
 #          echo "stage ${{ needs.set-env.outputs.stage }}"
 
 #  test1:
