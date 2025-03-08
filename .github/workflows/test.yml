@@ -23,7 +23,7 @@ jobs:
     name: set-env
     runs-on: ubuntu-latest
     outputs:
-      stage: ${{ steps.setenv.outputs.stage}}
+      stage: ${{ steps.setenv.outputs.stage }}
     env: 
       test1: ${{ fromJSON( '["A", "B", "C"]')[1] }}
 #      test2: ${{ fromJSON( '[ { "C" : "A" }]') }}
@@ -43,7 +43,7 @@ jobs:
             #echo "stage=${obj}"
             obj="{¥"targets¥":[{¥"env¥":¥"dev¥"}]}"
             #echo "stage=$obj" >> $GITHUB_OUTPUT 
-            echo "matrix={\"include\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}" >> $GITHUB_OUTPUT
+            echo "stage={\"include\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}" >> $GITHUB_OUTPUT
             echo "stage={\"include\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}"
           #fi
            
