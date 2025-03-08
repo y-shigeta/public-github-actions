@@ -50,10 +50,9 @@ jobs:
   env-check:
     needs: set-env
     strategy:
-      matrix:
-        stage: ${{ fromJson(needs.set-env.outputs.stage) }}
+      matrix: ${{ fromJson(needs.set-env.outputs.stage) }}
     env: 
-      env_name: ${{ matrix.stage }}
+      env_name: ${{ matrix.env }}
 #      env_name: ${{ fromJson(needs.set-env.outputs.stage) }}
     runs-on: ubuntu-latest
     steps:
