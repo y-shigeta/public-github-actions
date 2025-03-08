@@ -42,8 +42,9 @@ jobs:
             #obj=$(echo '{ "env" : "dev" }' | jq -c)
             #echo "stage=${obj}"
             obj="{¥"targets¥":[{¥"env¥":¥"dev¥"}]}"
-            echo "stage=$obj" >> $GITHUB_OUTPUT 
-#            echo "${{ toJson($GITHUB_OUTPUT) }}"
+            #echo "stage=$obj" >> $GITHUB_OUTPUT 
+            echo "matrix={\"include\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}" >> $GITHUB_OUTPUT
+            echo "stage={\"include\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}"
           #fi
            
   env-check:
