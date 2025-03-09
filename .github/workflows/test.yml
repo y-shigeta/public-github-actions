@@ -50,7 +50,7 @@ jobs:
       matrix: 
         env: ${{ fromJson(needs.set-env.outputs.stage) }}
     env: 
-      env_name: ${{ matrix.env.env }}
+      env_name: ${{ matrix.env }}
 #      env_name: ${{ fromJson(needs.set-env.outputs.stage) }}
     runs-on: ubuntu-latest
     steps:
