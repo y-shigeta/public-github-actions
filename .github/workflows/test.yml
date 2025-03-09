@@ -39,7 +39,8 @@ jobs:
             #echo ${{ env.test1 }}
             #obj=$(echo '{ "env" : "dev" }' | jq -c)
             #echo "stage=${obj}"
-            echo "stage={\"target\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}" >> $GITHUB_OUTPUT
+            echo "stage={\"env\":[\"dev\","stg\"]}" >> $GITHUB_OUTPUT
+            #echo "stage={\"target\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}" >> $GITHUB_OUTPUT
             #echo "stage={\"include\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}" >> $GITHUB_OUTPUT
             echo "stage={\"include\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}"
           fi
