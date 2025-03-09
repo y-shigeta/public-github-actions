@@ -39,8 +39,8 @@ jobs:
             #echo ${{ env.test1 }}
             #obj=$(echo '{ "env" : "dev" }' | jq -c)
             #echo "stage=${obj}"
-            echo "stage={\"env\":[{\"dev\"},{"stg\"}]}" >> $GITHUB_OUTPUT
-            #echo "stage={\"target\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}" >> $GITHUB_OUTPUT
+            #echo "stage={\"env\":[ \"dev\" , "stg\" ] }" >> $GITHUB_OUTPUT
+            echo "stage={\"target\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}" >> $GITHUB_OUTPUT
             #echo "stage={\"include\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}" >> $GITHUB_OUTPUT
             echo "stage={\"include\":[{\"env\":\"dev\"},{\"env\":\"stg\"}]}"
           fi
@@ -50,14 +50,15 @@ jobs:
     strategy:
       matrix: 
         env: ${{ fromJson(needs.set-env.outputs.stage) }}
-    env: 
-      env_name: ${{ matrix.env }}
+    #env: 
+    #  env_name: ${{ matrix.env }}
 #      env_name: ${{ fromJson(needs.set-env.outputs.stage) }}
     runs-on: ubuntu-latest
     steps:
       - name: echo
         run: |
-          echo "env.env_name ${{ env.env_name }}"
+          echo "env.env_name ${{ matrix.env }}"
+          #echo "env.env_name ${{ env.env_name }}"
 #          echo "env.env_name ${{ needs.set-env.outputs.stage }}"
 #          echo "stage ${{ needs.set-env.outputs.stage }}"
 
